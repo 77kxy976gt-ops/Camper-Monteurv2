@@ -11,6 +11,7 @@ export default function Home() {
   const [name, setName] = useState<string>('');
   const [licensePlate, setLicensePlate] = useState<string>('');
   const [makeModel, setMakeModel] = useState<string>('');
+  const [bouwjaar, setBouwjaar] = useState<string>('');
   const [complaint, setComplaint] = useState<string>('');
   const [workOrder, setWorkOrder] = useState<WorkOrder | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,7 +31,7 @@ export default function Home() {
     setIsAccepted(false);
 
     try {
-      const generatedOrder = await generateWorkOrder({ name, licensePlate, makeModel, complaint });
+      const generatedOrder = await generateWorkOrder({ name, licensePlate, makeModel, bouwjaar, complaint });
       setWorkOrder(generatedOrder);
     } catch (err) {
       console.error(err);
@@ -65,6 +66,8 @@ export default function Home() {
               setLicensePlate={setLicensePlate}
               makeModel={makeModel}
               setMakeModel={setMakeModel}
+              bouwjaar={bouwjaar}
+              setBouwjaar={setBouwjaar}
               complaint={complaint}
               setComplaint={setComplaint}
               handleSubmit={handleSubmit}

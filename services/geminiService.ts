@@ -31,6 +31,7 @@ const workOrderSchema = {
     klantnaam: { type: Type.STRING, description: 'De naam van de klant.' },
     kenteken: { type: Type.STRING, description: 'Het kenteken van het voertuig.' },
     merkModel: { type: Type.STRING, description: 'Het merk en model van de caravan/camper.' },
+    bouwjaar: { type: Type.STRING, description: 'Het bouwjaar van het voertuig.' },
     registratieStatus: { type: Type.STRING, description: 'De status voor het interne werkplaatssysteem. Geef hier de waarde "Geregistreerd en ingepland" terug.'},
     problemen: {
         type: Type.ARRAY,
@@ -38,10 +39,10 @@ const workOrderSchema = {
         items: problemDetailsSchema
     }
   },
-  required: ['klantnaam', 'kenteken', 'merkModel', 'registratieStatus', 'problemen']
+  required: ['klantnaam', 'kenteken', 'merkModel', 'bouwjaar', 'registratieStatus', 'problemen']
 };
 
-export const generateWorkOrder = async (data: { name: string; licensePlate: string; makeModel: string; complaint: string }): Promise<WorkOrder> => {
+export const generateWorkOrder = async (data: { name: string; licensePlate: string; makeModel: string; bouwjaar: string; complaint: string }): Promise<WorkOrder> => {
   const systemInstruction = `Je bent een AI-assistent voor de frontdesk van een caravan- en camperbedrijf. Je taak is om klantmeldingen te analyseren en om te zetten in een gestructureerde JSON-werkopdracht.
 
 Wanneer je een klantmelding ontvangt, analyseer je de tekst zorgvuldig.
@@ -67,6 +68,7 @@ Verwerk ook genegeerde, vergeten of oude meldingen; in dat geval maak je een nie
     - Naam: ${data.name || 'Niet opgegeven'}
     - Kenteken: ${data.licensePlate || 'Niet opgegeven'}
     - Merk/Model: ${data.makeModel || 'Niet opgegeven'}
+    - Bouwjaar: ${data.bouwjaar || 'Niet opgegeven'}
 
     Klantmelding:
     ${data.complaint}

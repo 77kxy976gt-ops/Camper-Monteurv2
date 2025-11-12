@@ -12,6 +12,7 @@ export interface WorkOrder {
   klantnaam: string;
   kenteken: string;
   merkModel: string;
+  bouwjaar?: string;
   registratieStatus: string;
   problemen: ProblemDetails[];
 }

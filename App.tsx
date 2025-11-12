@@ -10,6 +10,7 @@ const App: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [licensePlate, setLicensePlate] = useState<string>('');
   const [makeModel, setMakeModel] = useState<string>('');
+  const [bouwjaar, setBouwjaar] = useState<string>('');
   const [complaint, setComplaint] = useState<string>('');
   const [workOrder, setWorkOrder] = useState<WorkOrder | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -29,7 +30,7 @@ const App: React.FC = () => {
     setIsAccepted(false); // Reset acceptance state on new submission
 
     try {
-      const generatedOrder = await generateWorkOrder({ name, licensePlate, makeModel, complaint });
+      const generatedOrder = await generateWorkOrder({ name, licensePlate, makeModel, bouwjaar, complaint });
       setWorkOrder(generatedOrder);
     } catch (err) {
       console.error(err);
@@ -65,6 +66,8 @@ const App: React.FC = () => {
               setLicensePlate={setLicensePlate}
               makeModel={makeModel}
               setMakeModel={setMakeModel}
+              bouwjaar={bouwjaar}
+              setBouwjaar={setBouwjaar}
               complaint={complaint}
               setComplaint={setComplaint}
               handleSubmit={handleSubmit}

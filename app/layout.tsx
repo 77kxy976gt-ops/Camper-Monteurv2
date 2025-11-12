@@ -1,3 +1,5 @@
+// Fix: Import React to make the 'React' namespace available for type annotations like React.ReactNode.
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 

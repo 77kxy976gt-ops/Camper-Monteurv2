@@ -8,6 +8,8 @@ interface ComplaintFormProps {
   setLicensePlate: (licensePlate: string) => void;
   makeModel: string;
   setMakeModel: (makeModel: string) => void;
+  bouwjaar: string;
+  setBouwjaar: (bouwjaar: string) => void;
   complaint: string;
   setComplaint: (complaint: string) => void;
   handleSubmit: (e: React.FormEvent) => void;
@@ -19,6 +21,7 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({
   name, setName, 
   licensePlate, setLicensePlate,
   makeModel, setMakeModel,
+  bouwjaar, setBouwjaar,
   complaint, setComplaint, 
   handleSubmit, isLoading, isAccepted
 }) => {
@@ -52,17 +55,31 @@ const ComplaintForm: React.FC<ComplaintFormProps> = ({
             />
           </div>
         </div>
-        <div className="mb-4">
-            <label htmlFor="make-model" className="text-gray-600 mb-2 block text-sm font-medium">Merk / Model</label>
-            <input
-              id="make-model"
-              type="text"
-              value={makeModel}
-              onChange={(e) => setMakeModel(e.target.value)}
-              placeholder="Adria Matrix"
-              className="w-full p-3 bg-gray-50 border border-brand-lightgray rounded-lg focus:ring-2 focus:ring-brand-lightblue focus:outline-none transition-all duration-200 text-gray-800 disabled:bg-gray-200 disabled:cursor-not-allowed"
-              disabled={isLoading || isAccepted}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+              <label htmlFor="make-model" className="text-gray-600 mb-2 block text-sm font-medium">Merk / Model</label>
+              <input
+                id="make-model"
+                type="text"
+                value={makeModel}
+                onChange={(e) => setMakeModel(e.target.value)}
+                placeholder="Adria Matrix"
+                className="w-full p-3 bg-gray-50 border border-brand-lightgray rounded-lg focus:ring-2 focus:ring-brand-lightblue focus:outline-none transition-all duration-200 text-gray-800 disabled:bg-gray-200 disabled:cursor-not-allowed"
+                disabled={isLoading || isAccepted}
+              />
+          </div>
+          <div>
+              <label htmlFor="bouwjaar" className="text-gray-600 mb-2 block text-sm font-medium">Bouwjaar</label>
+              <input
+                id="bouwjaar"
+                type="text"
+                value={bouwjaar}
+                onChange={(e) => setBouwjaar(e.target.value)}
+                placeholder="2022"
+                className="w-full p-3 bg-gray-50 border border-brand-lightgray rounded-lg focus:ring-2 focus:ring-brand-lightblue focus:outline-none transition-all duration-200 text-gray-800 disabled:bg-gray-200 disabled:cursor-not-allowed"
+                disabled={isLoading || isAccepted}
+              />
+          </div>
         </div>
 
         <label htmlFor="complaint-input" className="text-gray-600 mb-2 text-sm font-medium">

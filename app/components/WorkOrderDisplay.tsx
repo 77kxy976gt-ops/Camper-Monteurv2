@@ -1,6 +1,6 @@
 import React from 'react';
 import type { WorkOrder, ProblemDetails } from '../types';
-import { WrenchIcon, ClipboardListIcon, TagIcon, LightBulbIcon, ClockIcon, DocumentTextIcon, ShoppingCartIcon, UserIcon, IdentificationIcon, LogoIcon, CheckBadgeIcon, ExternalLinkIcon, CheckIcon } from './icons';
+import { WrenchIcon, ClipboardListIcon, TagIcon, LightBulbIcon, ClockIcon, DocumentTextIcon, ShoppingCartIcon, UserIcon, IdentificationIcon, LogoIcon, CheckBadgeIcon, ExternalLinkIcon, CheckIcon, CalendarIcon } from './icons';
 
 interface WorkOrderDisplayProps {
   workOrder: WorkOrder | null;
@@ -117,7 +117,7 @@ const WorkOrderDisplay: React.FC<WorkOrderDisplayProps> = ({ workOrder, isLoadin
       <div className="space-y-6">
         <div className="p-6 bg-gray-50 rounded-lg border border-brand-lightgray">
             <h4 className="font-semibold text-gray-500 mb-4 flex items-center gap-2">Klant & Voertuig</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
                     <UserIcon className="h-5 w-5 text-brand-lightblue"/>
                     <span className="text-gray-800">{workOrder.klantnaam || 'Onbekend'}</span>
@@ -130,6 +130,12 @@ const WorkOrderDisplay: React.FC<WorkOrderDisplayProps> = ({ workOrder, isLoadin
                     <LogoIcon className="h-5 w-5 text-brand-lightblue"/>
                     <span className="text-gray-800">{workOrder.merkModel || 'Onbekend'}</span>
                 </div>
+                {workOrder.bouwjaar && (
+                  <div className="flex items-center gap-3">
+                      <CalendarIcon className="h-5 w-5 text-brand-lightblue"/>
+                      <span className="text-gray-800">{workOrder.bouwjaar}</span>
+                  </div>
+                )}
             </div>
         </div>
 

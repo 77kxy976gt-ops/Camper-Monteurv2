@@ -32,6 +32,7 @@ const problemDetailsSchema = {
       klantnaam: { type: Type.STRING, description: 'De naam van de klant.' },
       kenteken: { type: Type.STRING, description: 'Het kenteken van het voertuig.' },
       merkModel: { type: Type.STRING, description: 'Het merk en model van de caravan/camper.' },
+      bouwjaar: { type: Type.STRING, description: 'Het bouwjaar van het voertuig.' },
       registratieStatus: { type: Type.STRING, description: 'De status voor het interne werkplaatssysteem. Geef hier de waarde "Geregistreerd en ingepland" terug.'},
       problemen: {
           type: Type.ARRAY,
@@ -39,7 +40,7 @@ const problemDetailsSchema = {
           items: problemDetailsSchema
       }
     },
-    required: ['klantnaam', 'kenteken', 'merkModel', 'registratieStatus', 'problemen']
+    required: ['klantnaam', 'kenteken', 'merkModel', 'bouwjaar', 'registratieStatus', 'problemen']
   };
 
 export async function POST(request: Request) {
@@ -66,15 +67,16 @@ Genereer een werkopdracht met één item in de 'problemen' array.
 
 Verwerk ook genegeerde, vergeten of oude meldingen; in dat geval maak je een nieuwe werkorder aan en vul je de bekende klant- en voertuiggegevens in. Na analyse zet je de 'registratieStatus' altijd op "Geregistreerd en ingepland". Gebruik altijd Nederlands.`;
 
-        const prompt = \`
+        const prompt = `
             Klantgegevens:
-            - Naam: \${data.name || 'Niet opgegeven'}
-            - Kenteken: \${data.licensePlate || 'Niet opgegeven'}
-            - Merk/Model: \${data.makeModel || 'Niet opgegeven'}
+            - Naam: ${data.name || 'Niet opgegeven'}
+            - Kenteken: ${data.licensePlate || 'Niet opgegeven'}
+            - Merk/Model: ${data.makeModel || 'Niet opgegeven'}
+            - Bouwjaar: ${data.bouwjaar || 'Niet opgegeven'}
 
             Klantmelding:
-            \${data.complaint}
-        \`;
+            ${data.complaint}
+        `;
 
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",

@@ -1,6 +1,6 @@
 import type { WorkOrder } from '../types';
 
-export const generateWorkOrder = async (data: { name: string; licensePlate: string; makeModel: string; complaint: string }): Promise<WorkOrder> => {
+export const generateWorkOrder = async (data: { name: string; licensePlate: string; makeModel: string; bouwjaar: string; complaint: string }): Promise<WorkOrder> => {
   const response = await fetch('/api/generate', {
     method: 'POST',
     headers: {
