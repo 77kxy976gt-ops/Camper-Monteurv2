@@ -1,3 +1,4 @@
+"use client";
 
 import React, { useState } from 'react';
 import type { WorkOrder } from './types';
@@ -6,7 +7,7 @@ import ComplaintForm from './components/ComplaintForm';
 import WorkOrderDisplay from './components/WorkOrderDisplay';
 import { LogoIcon } from './components/icons';
 
-const App: React.FC = () => {
+export default function Home() {
   const [name, setName] = useState<string>('');
   const [licensePlate, setLicensePlate] = useState<string>('');
   const [makeModel, setMakeModel] = useState<string>('');
@@ -26,7 +27,7 @@ const App: React.FC = () => {
     setIsLoading(true);
     setError(null);
     setWorkOrder(null);
-    setIsAccepted(false); // Reset acceptance state on new submission
+    setIsAccepted(false);
 
     try {
       const generatedOrder = await generateWorkOrder({ name, licensePlate, makeModel, complaint });
@@ -42,11 +43,10 @@ const App: React.FC = () => {
   const handleAccept = () => {
     setIsAccepted(true);
     console.log("Werkorder geaccepteerd!");
-    // In een echte applicatie zou hier een API-call volgen om de status in de backend op te slaan.
   };
 
   return (
-    <div className="min-h-screen bg-brand-dark text-gray-700 font-sans p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen text-gray-700 font-sans p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <header className="flex items-center gap-4 mb-8">
           <LogoIcon className="h-12 w-12 text-brand-lightblue" />
@@ -86,6 +86,4 @@ const App: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default App;
+}
