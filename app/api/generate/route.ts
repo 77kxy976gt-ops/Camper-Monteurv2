@@ -51,10 +51,10 @@ export async function POST(request: Request) {
 
 Wanneer je een klantmelding ontvangt, analyseer je de tekst zorgvuldig.
 
-➡️ Als er één probleem wordt genoemd:
+-> Als er één probleem wordt genoemd:
 Genereer een werkopdracht met één item in de 'problemen' array.
 
-➡️ Als er meerdere, losstaande problemen worden genoemd (bijv. ‘koelkast doet het niet én het dakluik lekt’):
+-> Als er meerdere, losstaande problemen worden genoemd (bijv. 'koelkast doet het niet en het dakluik lekt'):
 1. Splits de melding op in aparte deelproblemen.
 2. Maak voor elk deelprobleem een eigen, compleet object in de 'problemen' array. Elk object moet bevatten:
     - Een duidelijke probleembeschrijving.
